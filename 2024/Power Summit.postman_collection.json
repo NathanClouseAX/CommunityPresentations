@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "586146a3-d8de-40a4-aa6a-ec0a10ee9eb7",
+		"name": "Power Summit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10678649"
+	},
+	"item": [
+		{
+			"name": "Get Customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{environmentURL}}/data/CustomersV3?$cross-company=true&$top=100",
+					"host": [
+						"{{environmentURL}}"
+					],
+					"path": [
+						"data",
+						"CustomersV3"
+					],
+					"query": [
+						{
+							"key": "$cross-company",
+							"value": "true"
+						},
+						{
+							"key": "$top",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sales Order Header",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{environmentURL}}/data/SalesOrderHeadersV2?$cross-company=true&$top=1&$filter=CustomersOrderReference eq 'abc123'",
+					"host": [
+						"{{environmentURL}}"
+					],
+					"path": [
+						"data",
+						"SalesOrderHeadersV2"
+					],
+					"query": [
+						{
+							"key": "$cross-company",
+							"value": "true"
+						},
+						{
+							"key": "$top",
+							"value": "1"
+						},
+						{
+							"key": "$filter",
+							"value": "CustomersOrderReference eq 'abc123'",
+							"description": "use external identifier"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Purchase Order Header",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{environmentURL}}/data/PurchaseOrderHeadersV2(PurchaseOrderNumber='P267752',dataAreaId='03')",
+					"host": [
+						"{{environmentURL}}"
+					],
+					"path": [
+						"data",
+						"PurchaseOrderHeadersV2(PurchaseOrderNumber='P267752',dataAreaId='03')"
+					],
+					"query": [
+						{
+							"key": "$cross-company",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "$top",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "$filter",
+							"value": "CustomersOrderReference eq 'abc123'",
+							"description": "use external identifier",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sales Order Lines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{environmentURL}}/data/SalesOrderLines?$cross-company=true&$top=1&$filter=SalesOrderNumber eq 'SO-000464'",
+					"host": [
+						"{{environmentURL}}"
+					],
+					"path": [
+						"data",
+						"SalesOrderLines"
+					],
+					"query": [
+						{
+							"key": "$cross-company",
+							"value": "true"
+						},
+						{
+							"key": "$top",
+							"value": "1"
+						},
+						{
+							"key": "$filter",
+							"value": "SalesOrderNumber eq 'SO-000464'",
+							"description": "use SalesOrderNumber from Header"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "clientSecret",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://login.microsoftonline.com/9d2a793f-db8c-9999-821c-34e31d66b3cd/oauth2/token",
+				"type": "string"
+			},
+			{
+				"key": "tokenRequestParams",
+				"value": [
+					{
+						"key": "resource",
+						"value": "{{environmentURL}}",
+						"enabled": true,
+						"send_as": "request_body"
+					}
+				],
+				"type": "any"
+			},
+			{
+				"key": "tokenName",
+				"value": "OData token",
+				"type": "string"
+			},
+			{
+				"key": "refreshRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "authRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "environmentURL",
+			"value": "https://powercommunityURL.operations.dynamics.com",
+			"type": "string"
+		}
+	]
+}
